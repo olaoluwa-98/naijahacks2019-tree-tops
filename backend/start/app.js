@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -11,12 +11,23 @@
 |
 */
 const providers = [
-  '@adonisjs/framework/providers/AppProvider',
-  '@adonisjs/auth/providers/AuthProvider',
-  '@adonisjs/bodyparser/providers/BodyParserProvider',
-  '@adonisjs/cors/providers/CorsProvider',
-  '@adonisjs/lucid/providers/LucidProvider'
-]
+  "@adonisjs/framework/providers/AppProvider",
+  "@adonisjs/auth/providers/AuthProvider",
+  "@adonisjs/bodyparser/providers/BodyParserProvider",
+  "@adonisjs/cors/providers/CorsProvider",
+  "@adonisjs/lucid/providers/LucidProvider",
+  "@adonisjs/framework/providers/ViewProvider",
+  "@adonisjs/validator/providers/ValidatorProvider",
+  "adonis-guard/providers/GuardProvider",
+  "adonis-sentry/providers/Sentry",
+  "adonis-bumblebee/providers/BumblebeeProvider"
+  // "adonis-kue/providers/KueProvider",
+  // "adonis-twilio-node/providers/TwilioProvider",
+  // "adonis-bitly/providers/BitlyProvider",
+  // "@radmen/adonis-lucid-soft-deletes/providers/SoftDeletesProvider",
+  // "@adonisjs/redis/providers/RedisProvider",
+  // "@adonisjs/mail/providers/MailProvider",
+];
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +39,10 @@ const providers = [
 |
 */
 const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider'
-]
+  "@adonisjs/lucid/providers/MigrationsProvider",
+  "adonis-bumblebee/providers/CommandsProvider"
+  // "adonis-kue/providers/CommandsProvider",
+];
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +56,10 @@ const aceProviders = [
 |   { Route: 'Adonis/Src/Route' }
 |
 */
-const aliases = {}
+const aliases = {
+  // Job: "App/Utilities/QueueJob"
+  // SMS: "App/Services/Sms"
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +69,18 @@ const aliases = {}
 | Here you store ace commands for your package
 |
 */
-const commands = []
+const commands = [];
 
-module.exports = { providers, aceProviders, aliases, commands }
+/*
+|--------------------------------------------------------------------------
+| Jobs
+|--------------------------------------------------------------------------
+|
+| Here you write jobs
+|
+*/
+const jobs = [
+  // "App/Jobs/Sms/Reset/SendPasswordResetSms"
+];
+
+module.exports = { providers, aceProviders, aliases, commands, jobs };

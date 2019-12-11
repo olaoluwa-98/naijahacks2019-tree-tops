@@ -13,7 +13,8 @@ class CourseSchema extends Schema {
         .notNullable()
         .unsigned()
         .references("id")
-        .inTable("universities");
+        .inTable("universities")
+        .onDelete("CASCADE");
       table.timestamps();
     });
   }

@@ -6,14 +6,18 @@ const Schema = use("Schema");
 class SubjectsSchema extends Schema {
   up() {
     this.create("subjects", table => {
-      table.string("name", 500).notNullable();
-      table.float("unit", 2).notNullable();
+      table.increments();
+      table.string("code", 10).notNullable();
+      table.string("name", 500);
+      table.float("unit").notNullable();
       table
         .integer("course_id")
         .notNullable()
         .unsigned()
         .references("id")
-        .inTable("courses");
+        .inTable("courses")
+        .onDelete("CASCADE");
+      table.timestamps();
     });
   }
 

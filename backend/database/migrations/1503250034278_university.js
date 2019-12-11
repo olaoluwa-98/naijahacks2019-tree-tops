@@ -13,12 +13,6 @@ class UniversitySchema extends Schema {
         .notNullable()
         .unique();
       table.string("password", 60).notNullable();
-      table
-        .integer("university_grading_point_id")
-        .notNullable()
-        .unsigned()
-        .references("id")
-        .inTable("university_grading_points");
       table.timestamps();
     });
   }

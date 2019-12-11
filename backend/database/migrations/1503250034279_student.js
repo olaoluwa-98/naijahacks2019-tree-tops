@@ -15,14 +15,15 @@ class StudentSchema extends Schema {
         .unique();
       table.string("password", 60).notNullable();
       table.integer("current_level").notNullable();
-      table.float("target_gpa", 2);
-      table.float("current_gpa", 2);
+      table.float("target_gpa");
+      table.float("current_gpa");
       table
         .integer("university_id")
         .notNullable()
         .unsigned()
         .references("id")
-        .inTable("universities");
+        .inTable("universities")
+        .onDelete("CASCADE");
       table.timestamps();
     });
   }

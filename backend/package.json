@@ -24,6 +24,10 @@
     "@adonisjs/framework": "^5.0.9",
     "@adonisjs/ignitor": "^2.0.8",
     "@adonisjs/lucid": "^6.1.3",
+    "@adonisjs/validator": "^5.0.6",
+    "adonis-bumblebee": "^2.0.0",
+    "adonis-guard": "^1.0.0-beta.5",
+    "adonis-sentry": "^2.0.2",
     "mysql": "^2.17.1"
   },
   "devDependencies": {},

@@ -14,7 +14,8 @@ class StudentPreferenceSchema extends Schema {
         .notNullable()
         .unsigned()
         .references("id")
-        .inTable("students");
+        .inTable("students")
+        .onDelete("CASCADE");
       table.timestamps();
     });
   }
