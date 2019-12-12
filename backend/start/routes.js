@@ -34,7 +34,7 @@ Route.group(() => {
   // 🏫 University
   Route.get("universities", "V1/UniversityController.index");
 
-  // 📔 University Courses
+  // 📚 University Courses
   Route.get("universities/:university/courses", "V1/CourseController.index");
   Route.get("universities/:university/courses/:course", "V1/CourseController.show"); // prettier-ignore
 
@@ -59,15 +59,24 @@ Route.group(() => {
   Route.get("u/profile", "V1/UniversityController.profile"); // ?include=gradePoints
   Route.put("u/profile", "V1/UniversityController.updateProfile").validator('Profile/University/Update'); // prettier-ignore
 
-  // University Courses
+  // 📚 University Courses
   Route.delete("courses/:course", "V1/CourseController.destroy"); // ?include=subjects
   Route.post("courses", "V1/CourseController.store").validator('Courses/Create'); // prettier-ignore
   Route.put("courses/:course", "V1/CourseController.update").validator('Courses/Update'); // prettier-ignore
 
-  // Subject
+  // 📔 Subject
   Route.delete("courses/:course/subjects/:subject", "V1/SubjectController.destroy"); //prettier-ignore
   Route.post("courses/:course/subjects/bulk", "V1/SubjectController.storeBulk").validator('Subject/CreateBulk'); // prettier-ignore
   Route.put("courses/:course/subjects/:subject", "V1/SubjectController.update").validator('Subject/Update'); // prettier-ignore
 })
   .prefix(API_V1)
   .middleware("auth:university");
+
+Route.group(() => {
+  // 💥 Recommendation
+  Route.put("recommendation/build/:uuid", "V1/RecommendationController.updateBuildStatus")
+    .validator("Recommendation/Build/UpdateStatus")
+    .as("v1.recommendation.build.update"); // prettier-ignore
+})
+  .prefix(API_V1)
+  .middleware("recommendation-build-server");

@@ -39,7 +39,8 @@ const globalMiddleware = [
 const namedMiddleware = {
   auth: "Adonis/Middleware/Auth",
   guest: "Adonis/Middleware/AllowGuestOnly",
-  can: "Adonis/Middleware/Can"
+  can: "Adonis/Middleware/Can",
+  "recommendation-build-server": "App/Middleware/AuthorizeRecommendationBuildServer" // prettier-ignore
 };
 
 /*
