@@ -14,4 +14,14 @@ const exists = async (data, field, message, args, get) => {
   if (!row) throw message;
 };
 
-module.exports = { exists };
+const inArray = async (data, field, message, args, get) => {
+  const value = get(data, field);
+
+  if (args.indexOf(value.toString()) < 0) {
+    throw message;
+  }
+
+  return;
+};
+
+module.exports = { exists, inArray };
