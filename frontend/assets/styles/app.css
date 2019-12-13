@@ -15,6 +15,7 @@ body {
 
 p {
   font-weight: 300;
+  color: #555454;
 }
 
 .bg-primary {
@@ -52,4 +53,71 @@ p {
 .container {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  grid-template-areas: "form-container banner";
+  min-height: 100vh;
+}
+
+.auth-container .form-container {
+  grid-area: "form-contianer";
+}
+
+.auth-container .banner {
+  grid-area: "banner";
+  background-image: url("/img/banner.png");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+.auth-container .banner > *,
+.auth-container .form-container > * {
+  max-width: 500px;
+}
+
+.auth-container .form-container > * {
+  width: calc(100% - 20px);
+  margin: auto;
+  margin-top: 20vh;
+}
+
+.preferences-page {
+  background-image: url("/img/art.svg");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.form-group {
+  margin: 30px 0;
+}
+
+.form-control {
+  margin: 0;
+}
+
+.form-label {
+  display: none !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  .auth-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "form-container";
+  }
+  .auth-container .banner {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 512px) {
+  .preferences-page {
+    padding-right: 10vw;
+  }
 }
