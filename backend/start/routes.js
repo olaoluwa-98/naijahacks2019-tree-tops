@@ -19,7 +19,7 @@ const Route = use("Route");
 /**
  * Constant declaration.
  */
-const API_V1 = "api/v1";
+const API_V1 = "v1";
 
 Route.group(() => {
   // 🔐 Authentication (Student)
