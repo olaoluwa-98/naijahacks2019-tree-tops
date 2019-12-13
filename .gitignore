@@ -1,2 +1,4 @@
 .env
 .env.production
+
+deployment/traefik/acme/certs*.json
