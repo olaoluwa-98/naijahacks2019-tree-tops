@@ -71,12 +71,15 @@ const LandingPage = () => (
       }}
       className="bg-primary d-flex flex-column justify-content-center align-items-center"
     >
-      <div className="d-flex justify-content-center align-items-center">
-        <FontAwesomeIcon icon={faFacebook} color="white" />
-        <FontAwesomeIcon icon={faInstagram} color="white" />
-        <FontAwesomeIcon icon={faTwitter} color="white" />
+      <div
+        className="d-flex justify-content-between align-items-center"
+        style={{ width: 150, marginBottom: 20 }}
+      >
+        <FontAwesomeIcon icon={faFacebook} color="white" size="2x" />
+        <FontAwesomeIcon icon={faInstagram} color="white" size="2x" />
+        <FontAwesomeIcon icon={faTwitter} color="white" size="2x" />
       </div>
-      <p>&copy; {new Date().getFullYear()} TreeTops.</p>
+      <p className="text-white">&copy; {new Date().getFullYear()} TreeTops.</p>
     </footer>
   </div>
 );

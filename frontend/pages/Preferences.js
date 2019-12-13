@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Form, Button, Col, Row } from "react-bootstrap";
+import Link from "next/link";
+import { Card, Form, Button, Col } from "react-bootstrap";
 
 export default function Preferences() {
   return (
@@ -18,14 +19,14 @@ export default function Preferences() {
             <Form.Group>
               <Form.Control type="number" placeholder="Level" />
             </Form.Group>
-            <Form.Row style={{ padding: 0 }}>
+            <Form.Row>
               <Col>
-                <Form.Group>
+                <Form.Group style={{ margin: 0 }}>
                   <Form.Control type="number" placeholder="Target CGPA" />
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Group>
+                <Form.Group style={{ margin: 0 }}>
                   <Form.Control type="number" placeholder="Current CGPA" />
                 </Form.Group>
               </Col>
@@ -34,9 +35,11 @@ export default function Preferences() {
               <Form.Control type="text" placeholder="Course Preferences" />
             </Form.Group>
             <Form.Group>
-              <Button variant="primary" type="submit">
-                Finish
-              </Button>
+              <Link href="/dashboard/home">
+                <Button variant="primary" type="submit">
+                  Finish
+                </Button>
+              </Link>
             </Form.Group>
           </Form>
         </Card.Body>
