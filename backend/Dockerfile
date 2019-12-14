@@ -1,7 +1,7 @@
 FROM node:12-alpine
-RUN npm install pm2 -g && mkdir /www
+RUN mkdir /www
 WORKDIR /www
 COPY package*.json ./
 RUN npm install
 COPY . .
-CMD ["pm2", "start", "npm", "--", "start"]
+CMD ["npm", "start"]
