@@ -31,5 +31,6 @@ certificatesResolvers:
     acme:
       email: "nkemdilimtochukwu@gmail.com"
       storage: "/etc/traefik/acme/certs.json"
+      tlsChallenge: {}
       httpChallenge:
         entryPoint: http
