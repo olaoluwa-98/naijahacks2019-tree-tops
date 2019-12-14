@@ -37,6 +37,36 @@ class RecommendationController extends BaseController {
   }
 
   /**
+   * Return grade recommendations for currently authenticated user.
+   *
+   * TODO: Make request to recommedation API.
+   *
+   * GET recommendation
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {View} ctx.view
+   */
+  async store({ auth, response, transform }) {
+    const courseId = 3;
+    const payload = { ...auth.user };
+    const recommedation = {};
+    const msg = "Recommendation retieved successfully.";
+    const webookUrl = RecommendationLinkBuilder.updateBuildStatus();
+    const gradePoints = await auth.user
+      .gradePoints()
+      .fetch()
+      .reduce((points, next) => {
+        points[next.grade] = next.point;
+        return points;
+      }, {});
+
+    // Transform the recommendation.
+    return response.ok({ msg, recommedation });
+  }
+
+  /**
    * Update the status of the knowledge base build.
    *
    * PUT recommendation/build/:uuid
