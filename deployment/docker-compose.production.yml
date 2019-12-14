@@ -36,6 +36,8 @@ services:
       - mysql
     links:
       - mysql:mysql
+    environment:
+      - ENV_PATH=.env.production
     env_file:
       - ../backend/.env.production
     labels:
