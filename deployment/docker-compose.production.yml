@@ -21,6 +21,12 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`treetops.xyz`)"
+      - "traefik.http.routers.frontend.entrypoints=http"
+      - "traefik.http.routers.frontend.middlewares=redirect-to-https@file"
+      - "traefik.http.routers.frontend-secured.rule=Host(`treetops.xyz`)"
+      - "traefik.http.routers.frontend-secured.entrypoints=web-secured"
+      - "traefik.http.routers.frontend-secured.tls=true"
+      - "traefik.http.routers.frontend-secured.tls.certresolver=letsencrypt"
 
   backend:
     container_name: treetops-backend
@@ -30,6 +36,8 @@ services:
       - mysql
     links:
       - mysql:mysql
+    environment:
+      - ENV_PATH=.env.production
     env_file:
       - ../backend/.env.production
     labels:
@@ -39,6 +47,8 @@ services:
       - "traefik.http.routers.backend.middlewares=redirect-to-https@file"
       - "traefik.http.routers.backend-secured.rule=Host(`api.treetops.xyz`)"
       - "traefik.http.routers.backend-secured.entrypoints=web-secured"
+      - "traefik.http.routers.backend-secured.tls=true"
+      - "traefik.http.routers.backend-secured.tls.certresolver=letsencrypt"
     expose:
       - "3333"
 
