@@ -62,7 +62,12 @@ class RecommendationController extends BaseController {
         return points;
       }, {});
 
-    // Transform the recommendation.
+    const course = await Course.findOrFail(courseId);
+    const subjects = await course.subjects().fetch();
+    const uuid = "";
+
+    course.merge({ knowledge_base_uuid: uuid });
+    await course.save();
     return response.ok({ msg, recommedation });
   }
 

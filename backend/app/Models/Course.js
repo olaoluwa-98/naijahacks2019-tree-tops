@@ -21,6 +21,13 @@ class Course extends Model {
   static get updateableFields() {
     return ["name"];
   }
+
+  /**
+   * Subjects belonging to a course.
+   */
+  subjects() {
+    return this.hasMany("App/Models/Subjects");
+  }
 }
 
 module.exports = Course;
