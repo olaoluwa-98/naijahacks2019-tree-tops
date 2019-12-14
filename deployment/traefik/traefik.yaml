@@ -31,6 +31,5 @@ certificatesResolvers:
     acme:
       email: "nkemdilimtochukwu@gmail.com"
       storage: "/etc/traefik/acme/certs.json"
-      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
       httpChallenge:
         entryPoint: http
