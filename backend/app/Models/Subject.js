@@ -12,14 +12,30 @@ class Subject extends Model {
    * List of user table fields that should be mass editable.
    */
   static get editableFields() {
-    return ["name", "code", "unit"];
+    return [
+      "name",
+      "code",
+      "unit",
+      "preference_business_weight",
+      "preference_humanities_weight",
+      "preference_science_weight",
+      "preference_engineering_weight"
+    ];
   }
 
   /**
    * List of user table fields that should be mass editable.
    */
   static get updateableFields() {
-    return ["name", "code", "unit"];
+    return [
+      "name",
+      "code",
+      "unit",
+      "preference_business_weight",
+      "preference_humanities_weight",
+      "preference_science_weight",
+      "preference_engineering_weight"
+    ];
   }
 
   course() {

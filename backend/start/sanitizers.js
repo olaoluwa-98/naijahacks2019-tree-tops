@@ -8,4 +8,9 @@ const lowercase = val => val.toLowerCase();
  */
 const uppercase = val => val.toUpperCase();
 
-module.exports = { uppercase, lowercase };
+/**
+ * Convert a value to a string representation.
+ */
+const toStr = val => val.toString();
+
+module.exports = { uppercase, lowercase, toStr };

@@ -1,0 +1,57 @@
+version: "3"
+services:
+  traefik:
+    container_name: treetops-reverse-proxy
+    image: traefik:2.1
+    restart: always
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - ./traefik/acme:/etc/traefik/acme
+      - ./traefik/.htpasswd:/etc/traefik/.htpasswd
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/dynamic.yaml:/etc/traefik/dynamic.yaml
+      - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+
+  frontend:
+    container_name: treetops-frontend
+    build: ../frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`treetops.xyz`)"
+
+  backend:
+    container_name: treetops-backend
+    restart: always
+    build: ../backend
+    depends_on:
+      - mysql
+    links:
+      - mysql:mysql
+    env_file:
+      - ../backend/.env.production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`api.treetops.xyz`)"
+      - "traefik.http.routers.backend.entrypoints=http"
+      - "traefik.http.routers.backend.middlewares=redirect-to-https@file"
+      - "traefik.http.routers.backend-secured.rule=Host(`api.treetops.xyz`)"
+      - "traefik.http.routers.backend-secured.entrypoints=web-secured"
+    expose:
+      - "3333"
+
+  mysql:
+    container_name: treetops-mysql
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - ./mysql/.env.production
+    expose:
+      - "3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+
+volumes:
+  mysql-volume:

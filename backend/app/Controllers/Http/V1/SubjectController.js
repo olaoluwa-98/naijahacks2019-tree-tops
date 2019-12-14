@@ -48,23 +48,22 @@ class SubjectController {
     const course = await Course.findOrFail(params.course);
     if (course.university_id !== auth.user.id) {
       return response.unauthorized({
-        msg: "You are currently unauthorized to update this course."
+        msg: "You are currently unauthorized to update this subject."
       });
     }
 
     const results = { subjects: [], failed: [] };
-    await request.input("subjects", []).forEach(async item => {
+    const subjects = request.input("subjects", []);
+    for (const item of subjects) {
       const subject = _.pick(item, Subject.editableFields);
       const query = { course_id: params.course, code: subject.code };
       const result = await Subject.query().where(query).first(); // prettier-ignore
       subject.course_id = params.course;
       if (result === null) results.subjects.push(subject);
       results.failed.push(subject);
-    });
+    }
 
-    const trx = await DB.beginTransaction();
-    results.subjects = await Subject.createMany(results.subjects, trx);
-    await trx.commit();
+    results.subjects = await Subject.createMany(results.subjects);
     results.subjects = await transform.collection(results.subjects, "SubjectTransformer"); // prettier-ignore
     return response.ok({ msg: "Subject created successfully.", ...results });
   }

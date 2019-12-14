@@ -1,0 +1,35 @@
+defaultEntryPoints: ["https", "http"]
+
+log:
+  level: "INFO" #DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+  format: "common"
+
+entryPoints:
+  http:
+    address: ":80"
+  web-secured:
+    address: ":443"
+
+http:
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+  file:
+    filename: "/etc/traefik/dynamic.yaml"
+    watch: true
+
+retry: {}
+
+acme:
+  email: "nkemdilimtochukwu@gmail.com"
+  storage: "/etc/traefik/acme/certs.json"
+  onHostRule: true
+  entryPoint: https
+  httpChallenge:
+    entryPoint: "http"
