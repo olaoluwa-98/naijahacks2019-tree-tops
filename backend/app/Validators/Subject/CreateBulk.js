@@ -15,6 +15,7 @@ class SubjectCreateBulk extends BaseValidator {
       "subjects.*.code": "required|string|min:2|max:10",
       "subjects.*.name": "required|string|min:3|max:500",
       "subjects.*.unit": "required|number|above:0",
+      "subjects.*.semester": "required|number|above:0",
       "subjects.*.preference_business_weight": `required|number|inArray:${ratings}`, // prettier-ignore
       "subjects.*.preference_humanities_weight": `required|number|inArray:${ratings}`, // prettier-ignore
       "subjects.*.preference_science_weight": `required|number|inArray:${ratings}`, // prettier-ignore
