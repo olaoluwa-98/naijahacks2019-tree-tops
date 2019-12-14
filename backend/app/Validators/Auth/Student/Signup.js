@@ -15,10 +15,10 @@ class AuthStudentSignup extends BaseValidator {
       lastname: "required|string|min:3|max:200",
       email: "required|email|string|min:8|unique:students,email",
       password: "required|string:min:8",
-      current_level: `required|number|in:${levels}`,
-      target_gpa: "required|number",
-      current_gpa: "required|number",
-      university_id: "required|exists:universities,id"
+      current_level: `number|in:${levels}`,
+      target_gpa: "number",
+      current_gpa: "number",
+      university_id: "exists:universities,id"
     };
   }
 
