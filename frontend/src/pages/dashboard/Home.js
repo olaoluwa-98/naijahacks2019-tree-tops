@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import DashBoardContainer from "components/DashBoardContainer";
 import PieChart from "components/PieChart";
+import { withAuthentication } from "utils/auth";
 
 function Home() {
   return (

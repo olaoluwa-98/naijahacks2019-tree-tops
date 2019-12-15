@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Field, Formik, Form } from "formik";
 import { Button } from "react-bootstrap";
 import AuthContainer from "components/AuthContainer";
@@ -12,7 +12,7 @@ export default function Login() {
   const handleSubmit = async values => {
     setLoading(true);
     await loginStudent(values).then(() => {
-      return <Redirect to="/home" />;
+      window.location.replace("/home");
     });
     setLoading(false);
   };

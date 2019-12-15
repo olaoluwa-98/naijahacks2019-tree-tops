@@ -1,11 +1,18 @@
 import Http from "../../utils/http";
 
-function registerStudentRequest({ firstname, lastname, email, password }) {
+function registerStudentRequest({
+  firstname,
+  lastname,
+  email,
+  password,
+  university_id
+}) {
   return Http.post("/auth/student/signup", {
     firstname,
     lastname,
     email,
-    password
+    password,
+    university_id
   });
 }
 

@@ -23,11 +23,13 @@ function isLoggedin() {
   return token ? true : false;
 }
 
-function verifyAuthentication() {
+function withAuthentication(component) {
   const isAuthenticated = isLoggedin();
-  if (!isAuthenticated) {
+  if (isAuthenticated) {
+    return component;
+  } else {
     window.location.replace("/login");
   }
 }
 
-export { getToken, removeToken, setToken, isLoggedin, verifyAuthentication };
+export { getToken, removeToken, setToken, isLoggedin, withAuthentication };

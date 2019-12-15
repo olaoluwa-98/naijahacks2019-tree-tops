@@ -6,15 +6,22 @@ import {
   loginUniversityRequest
 } from "../services/api/auth.api";
 
-async function registerStudent({ firstname, lastname, email, password }) {
+async function registerStudent({
+  firstname,
+  lastname,
+  email,
+  password,
+  university_id
+}) {
   try {
     const { data } = await registerStudentRequest({
       firstname,
       lastname,
       email,
-      password
+      password,
+      university_id
     });
-    setToken(data.token);
+    setToken(data.token.token);
     return data;
   } catch (error) {
     resolveRequestError(error);
@@ -24,7 +31,7 @@ async function registerStudent({ firstname, lastname, email, password }) {
 async function loginStudent({ email, password }) {
   try {
     const { data } = await loginStudentRequest({ email, password });
-    setToken(data.token);
+    setToken(data.token.token);
     return data;
   } catch (error) {
     resolveRequestError(error);

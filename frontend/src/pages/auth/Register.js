@@ -15,7 +15,7 @@ function Register() {
   const handleSubmit = async values => {
     setLoading(true);
     await registerStudent(values).then(() => {
-      return <Redirect to="/preferences" />;
+      window.location.replace("/preferences");
     });
     setLoading(false);
   };

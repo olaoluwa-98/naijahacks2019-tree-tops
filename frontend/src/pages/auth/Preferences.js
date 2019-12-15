@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import { Field, Formik, Form } from "formik";
 import { Card, Button, Col, Form as BSForm } from "react-bootstrap";
 import TextInput from "components/form/TextInput";
@@ -12,7 +11,7 @@ export default function Preferences() {
   const handleSubmit = async values => {
     setLoading(true);
     await updateStudentProfile(values).then(() => {
-      return <Redirect to="/home" />;
+      window.location.replace("/home");
     });
     setLoading(false);
   };
